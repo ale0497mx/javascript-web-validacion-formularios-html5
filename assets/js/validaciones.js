@@ -12,31 +12,52 @@ export function valida(input){
 
     if(input.validity.valid){
         input.parentElement.classList.remove("input-container--invalid");
-    }else{
+        input.parentElement.querySelector('.input-message-error').innerHTML = '';
+;    }else{
         input.parentElement.classList.add("input-container--invalid");
+        input.parentElement.querySelector('.input-message-error').innerHTML = viewErrorMessage(typeOfInput,input);
     }
 }
+const errorTypes = [
+    "valueMissing",
+    "typeMismatch",
+    "patternMismatch",
+    "customError",
+];
 
 const errorMensajes = {
     name: {
-        valueMissing: "Este campo no puede estar vacio"
+        valueMissing: "Este campo nombre no puede estar vacio"
     },
     email: {
-        valueMissing: "Este campo no puede estar vacio",
-        typeMissing: "el correo no es valido"
+        valueMissing: "Este campo correo no puede estar vacio",
+        typeMismatch: "el correo no es valido"
     },
     password: {
-        valueMissing: "Este campo no puede estar vacio",
-        patterMismatch: "Al menos 6 caracteres, máximo 12, debe contener una letra minúscula, una letra mayúscula, un número y no puede contener caracteres especiales."
+        valueMissing: "Este campo contraseña no puede estar vacio",
+        patternMismatch: "Al menos 6 caracteres, máximo 12, debe contener una letra minúscula, una letra mayúscula, un número y no puede contener caracteres especiales."
     },
-    bornDate: {
+    nacimiento: {
         valueMissing: "Este campo no puede estar vacio",
         customError: "Debes ser mayor de edad para registrate"
-    }
+    },
 }
 
 const validations = {
     nacimiento: (input) => validateBorn(input),
+}
+
+function viewErrorMessage(typeOfInput, input){
+    let message = "";
+    errorTypes.forEach( (error) =>{
+        if(input.validity[error]){
+            console.log(error);
+            console.log(input.validity[error]);
+            console.log(errorMensajes[typeOfInput][error]);
+            message = errorMensajes[typeOfInput][error];
+        }
+    });
+    return message;
 }
 
 function validateBorn(input){
