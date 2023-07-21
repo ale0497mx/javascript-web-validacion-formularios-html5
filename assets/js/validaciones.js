@@ -41,6 +41,22 @@ const errorMensajes = {
         valueMissing: "Este campo no puede estar vacio",
         customError: "Debes ser mayor de edad para registrate"
     },
+    numero: {
+        valueMissing: "Este campo no puede estar vacio",
+        patternMismatch: "El telefono debe de tener 10 digitos.",
+    },
+    direccion: {
+        valueMissing: "Agregue una direccion para continuar",
+        patternMismatch: "La direccion debe de contener al menos de 10 a 40 caracteres",
+    },
+    ciudad: {
+        valueMissing: "Este campo no puede estar vacio",
+        patternMismatch: "La ciudad debe de contener al menos de 4 a 30 caracteres",
+    },
+    estado: {
+        valueMissing: "Este campo no puede estar vacio",
+        patternMismatch: "El estado debe de contener al menos de 4 a 20 caracteres",
+    }
 }
 
 const validations = {
